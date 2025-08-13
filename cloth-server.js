@@ -5,7 +5,7 @@ const app = express()
 app.use(cors())
 app.get("/",(req,res)=>{
     res.json({
-        message: "hi this is shoe server"
+        message: "hi this is cloth server"
     })
 })
 
