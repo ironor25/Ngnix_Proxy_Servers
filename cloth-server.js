@@ -8,7 +8,9 @@ app.get("/",(req,res)=>{
         message: "hi this is cloth server"
     })
 })
-
+app.get("/shop",(req,res)=>{
+    res.json("Welcome to fancy clothing  page.")
+})
 app.listen(3001,()=>{
     console.log("cloth-server on port 3001")
 })
