@@ -18,8 +18,9 @@ jobs:
       - name: Deploy over SSH
         run: |
           ssh -o StrictHostKeyChecking=no -i dev_private_key.pem ubuntu@3.6.9.149 << 'EOF'
-            cd Ngnix_Proxy_Servers
+            source ~/.bashrc
+            cd /home/ubuntu/Ngnix_Proxy_Servers/frontend
             git pull origin master
-            pnpm install 
-            pm2 restart my-app
+            sudo pnpm install 
+            npx pm2 restart app
           EOF
