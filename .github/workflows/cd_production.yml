@@ -1,0 +1,25 @@
+name: Deploy to AWS (Raw SSH)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Copy SSH key
+        run: |
+          echo "${{ secrets.PROD_KEY }}" > prod_private_key.pem
+          chmod 600 prod_private_key.pem
+
+      - name: Deploy over SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no -i prod_private_key.pem ubuntu@3.6.9.149 << 'EOF'
+            cd Ngnix_Proxy_Servers
+            git pull origin production
+            pnpm install 
+            pm2 restart app
+          EOF
