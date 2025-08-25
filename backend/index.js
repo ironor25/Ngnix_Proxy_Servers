@@ -13,3 +13,7 @@ app.post("/",(req,res)=>{
         message : "this is post endpoint"
     })
 })
+
+app.listen(3000,()=>{
+    console.log("server started at 3000")
+})
